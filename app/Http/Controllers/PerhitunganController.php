@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use DB as DB;
 
 class PerhitunganController extends Controller
 {
@@ -78,6 +78,8 @@ class PerhitunganController extends Controller
                 $ret['altkriteria'][$key][$key2] = round(array_sum($value2) / COUNT($value2), 3, PHP_ROUND_HALF_UP);
             }
         }
+
+        return dd($ret['altkriteria']);
 
         foreach($ret['altkriteria'] as $key => $value){
             foreach($ret['altkriteria'] as $key2 => $value2){
@@ -155,6 +157,7 @@ class PerhitunganController extends Controller
             }
 
             $guru = DB::table('guru')->where('kd_guru', $key)->first();
+
             if($guru){
                 $ret['hasil'][$guru->nama_guru] = $temp;
             }
